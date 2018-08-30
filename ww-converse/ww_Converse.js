@@ -6,6 +6,47 @@
  * @author WickedWolfy
  * @version Version 1.3.0
  *
+ * @help
+ * Version 1.3.0 by WickedWolfy
+ *
+ * This plugin adds options for Conversations
+ * and allows for placing speaker on the right side
+ * as well as programmatically rotating the face-spright to mirror horizontally
+ *
+ *
+ * Available options:
+ * Add "Plugin command" in your RPG Maker MV, starting with "ww|CONVERSE" followed by options
+ * - "right" - places next speaker on the right side
+ * - "mirror" - mirrors next speaker's face horizontally
+ * - "cont" following option - sets constant option until reset
+ * - "reset" - resets all options to default (no right, no mirror)
+ *
+ *
+ * Example use:
+ * "ww|CONVERSE right" - Next speaker will be drawn on the right side
+ * "ww|CONVERSE right mirror" - Next speaker will be drawn on the right side 
+ *     and face image will be mirrored horizontally
+ * "ww|CONVERSE right cont mirror cont" - Speaker will be drawn on the right side 
+ *     and face image will be mirrored horizontally
+ *     ! And this will continue until "reset" is called
+ *     (This is convenient for person on the right having long dialog)
+ * "ww|CONVERSE reset" - resets all options to default: no mirror or placement
+ *
+ *
+ * Conflicts:
+ * This plugin will not work with any other that overwrites listed functions
+ * - drawMessageFace
+ * - newLineX
+ * In order to overwrite the functions properly, 
+ * place under the other overwriting plugins..."
+ * But if multiple plugins stake claim to overwriting not much can be done.
+ *
+ * If you have it and having troubles, feel free to find me on RPGMakerWeb.com forums
+ * "Official thread" is here https://forums.rpgmakerweb.com/index.php?threads/mirror-portraits-in-coversation-plugin-ww-converse.97105/
+ * "GitHub Location" is here https://github.com/WickedWolfy/ww-RPG-Maker-MV-scripts/tree/master/ww-converse
+ *
+ *
+ *
  *
  * @param == Face Frame Border == 
  * @desc
@@ -86,45 +127,6 @@
  * @default Graphics.boxWidth
  *
  *
- *
- * @help
- * Version 1.01 by WickedWolfy
- *
- * This plugin adds options for Conversations
- * and allows for placing speaker on the right side
- * as well as programmatically rotating the face-spright to mirror horizontally
- *
- *
- * Available options:
- * Add "Plugin command" in your RPG Maker MV, starting with "ww|CONVERSE" followed by options
- * - "right" - places next speaker on the right side
- * - "mirror" - mirrors next speaker's face horizontally
- * - "cont" following option - sets constant option until reset
- * - "reset" - resets all options to default (no right, no mirror)
- *
- *
- * Example use:
- * "ww|CONVERSE right" - Next speaker will be drawn on the right side
- * "ww|CONVERSE right mirror" - Next speaker will be drawn on the right side 
- *     and face image will be mirrored horizontally
- * "ww|CONVERSE right cont mirror cont" - Speaker will be drawn on the right side 
- *     and face image will be mirrored horizontally
- *     ! And this will continue until "reset" is called
- *     (This is convenient for person on the right having long dialog)
- * "ww|CONVERSE reset" - resets all options to default: no mirror or placement
- *
- *
- * Conflicts:
- * This plugin will not work with any other that overwrites listed functions
- * - drawMessageFace
- * - newLineX
- * In order to overwrite the functions properly, 
- * place under the other overwriting plugins..."
- * But if multiple plugins stake claim to overwriting not much can be done.
- *
- * If you have it and having troubles, feel free to find me on RPGMakerWeb.com forums
- * "Official thread" is here https://forums.rpgmakerweb.com/index.php?threads/mirror-portraits-in-coversation-plugin-ww-converse.97105/
- * "GitHub Location" is here https://github.com/WickedWolfy/ww-RPG-Maker-MV-scripts/tree/master/ww-converse
  *
  */
 
