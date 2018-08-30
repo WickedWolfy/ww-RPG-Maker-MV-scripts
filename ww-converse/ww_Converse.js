@@ -80,6 +80,10 @@
  * @min 1
  * @default 4
  *
+ * @param Message Box Width
+ * @desc Width for the message box (in pixels)
+ * @parent == Message Box Options ==
+ * @default Graphics.boxWidth
  *
  *
  *
@@ -142,6 +146,7 @@ Wicked.CONVERSE = Wicked.CONVERSE || {}; // Handle for "Conversation"
 	var standard_padding = Number( PluginManager.parameters('ww_Converse')['Window Padding'] ) || 13; // default: 18
 	var standard_opacity = Number( PluginManager.parameters('ww_Converse')['Window Alpha'] ) || 160; // default: 192
 	var visible_rows = Number( PluginManager.parameters('ww_Converse')['Text Rows'] ) || 4; // default: 4
+	var message_box_width = String( PluginManager.parameters('ww_Converse')['Message Box Width'] ) || '';
 
 	// speaker controls
 	var speaker_position_right_once = false;
@@ -215,7 +220,7 @@ Wicked.CONVERSE = Wicked.CONVERSE || {}; // Handle for "Conversation"
 
 		var dx = Math.floor( x + Math.max( width - pw, 0 ) / 2 ); // face left
 		if ( _.is_speaker_right() ) { // face right
-			var dx = Graphics.boxWidth - dw - ( this.standardPadding() * 2 );
+			var dx = _.overwrite_message_box_width() - dw - ( this.standardPadding() * 2 );
 
 			if ( _.is_speaker_mirror() ) { // flip image horizontal
 				dx = ( dx + dw ) * -1;
@@ -275,9 +280,15 @@ Wicked.CONVERSE = Wicked.CONVERSE || {}; // Handle for "Conversation"
 		}
 	};
 
-	Window_Message.prototype.windowWidth = function() { return Graphics.boxWidth; };
+	Window_Message.prototype.windowWidth = function() { return _.overwrite_message_box_width(); };
 	Window_Message.prototype.numVisibleRows = function() { return visible_rows; };
 	Window_Message.prototype.standardBackOpacity = function() { return standard_opacity; };
 	Window_Message.prototype.standardPadding = function() { return standard_padding; };
+
+
+	// Overwrites for extending for other modules... and cheating =3
+	_.overwrite_message_box_width = function() {
+		return eval( message_box_width ) || Graphics.boxWidth;
+	};
 
 })(Wicked.CONVERSE);
