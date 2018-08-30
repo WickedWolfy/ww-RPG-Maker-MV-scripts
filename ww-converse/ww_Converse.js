@@ -87,12 +87,6 @@
  * @param == Message Box Options == 
  * @desc
  *
- * @param Window Skin
- * @desc Option to change Window Skin for conversation to something custom.
- * @parent == Message Box Options == 
- * @dir img/system/
- * @type file
- *
  * @param Text Spacing
  * @desc Spacing between Face image and text
  * @parent == Message Box Options ==
@@ -127,6 +121,16 @@
  * @default Graphics.boxWidth
  *
  *
+ * @param == Message Box Skins ==
+ * @desc
+ *
+ * @param Default MessageBox Skin
+ * @desc Option to change Window Skin for conversation to something custom.
+ * @parent == Message Box Skins ==
+ * @dir img/system/
+ * @type file
+ *
+ *
  *
  */
 
@@ -144,11 +148,13 @@ Wicked.CONVERSE = Wicked.CONVERSE || {}; // Handle for "Conversation"
 	var face_frame_backdrop_alpha = Number( PluginManager.parameters('ww_Converse')['Face BG Alpha'] ) || 0.5;
 
 	// overwriting standards
-	var message_box_system_name = String( PluginManager.parameters('ww_Converse')['Window Skin'] ) || '';
 	var standard_padding = Number( PluginManager.parameters('ww_Converse')['Window Padding'] ) || 13; // default: 18
 	var standard_opacity = Number( PluginManager.parameters('ww_Converse')['Window Alpha'] ) || 160; // default: 192
 	var visible_rows = Number( PluginManager.parameters('ww_Converse')['Text Rows'] ) || 4; // default: 4
 	var message_box_width = String( PluginManager.parameters('ww_Converse')['Message Box Width'] ) || '';
+
+	// Themes
+	var message_box_system_name = String( PluginManager.parameters('ww_Converse')['Default MessageBox Skin'] ) || '';
 
 	// speaker controls
 	var speaker_position_right_once = false;
