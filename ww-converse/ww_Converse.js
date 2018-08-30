@@ -119,6 +119,8 @@
  * But if multiple plugins stake claim to overwriting not much can be done.
  *
  * If you have it and having troubles, feel free to find me on RPGMakerWeb.com forums
+ * "Official thread" is here https://forums.rpgmakerweb.com/index.php?threads/mirror-portraits-in-coversation-plugin-ww-converse.97105/
+ * "GitHub Location" is here https://github.com/WickedWolfy/ww-RPG-Maker-MV-scripts/tree/master/ww-converse
  *
  */
 
