@@ -162,6 +162,11 @@ Wicked.CONVERSE = Wicked.CONVERSE || {}; // Handle for "Conversation"
 	var speaker_position_mirror_once = false;
 	var speaker_position_mirror_cont = false;
 
+	// defaults
+	var _default_windowskin_set = false;
+	var _default_windowskin_name = null;
+	var _default_converse_windowskin_name = message_box_system_name;
+
 	// Plugin Commands
 	var local__Game_Interpreter = Game_Interpreter.prototype.pluginCommand;
 	Game_Interpreter.prototype.pluginCommand = function( command, args ) {
@@ -279,12 +284,42 @@ Wicked.CONVERSE = Wicked.CONVERSE || {}; // Handle for "Conversation"
 
 	//Window_Base.prototype.calcTextHeight = function(textState, all) {};
 	
-	var w_Window_Message__loadWindowskin = Window_Message.prototype.loadWindowskin;
+	/*var w_Window_Message__loadWindowskin = Window_Message.prototype.loadWindowskin;
 	Window_Message.prototype.loadWindowskin = function() {
 		if ( '' !== message_box_system_name ) {
-			this.windowskin = ImageManager.loadSystem( message_box_system_name );
+			var new_message_window_skin = ImageManager.loadSystem( message_box_system_name );
+			if ( this.windowskin !== null && this.windowskin !== new_message_window_skin ) {
+				_default_windowskin_set = true;
+				_default_windowskin_name = this.windowskin;
+			}
+			this.windowskin = new_message_window_skin;
 		} else {
 			w_Window_Message__loadWindowskin.call( this );
+		}
+	};*/
+
+	var w_Window_Message__startMessage = Window_Message.prototype.startMessage;
+	Window_Message.prototype.startMessage = function() {
+		w_Window_Message__startMessage.call( this );
+
+		if ( '' !== _default_converse_windowskin_name ) {
+			var new_message_window_skin = ImageManager.loadSystem( _default_converse_windowskin_name );
+			if ( !_default_windowskin_set && null !== this.windowskin ) {
+				_default_windowskin_set = true;
+				_default_windowskin_name = this.windowskin;
+			}
+			console.log( _default_windowskin_name, _default_windowskin_set );
+			this.windowskin = new_message_window_skin;
+		}
+	};
+
+	var w_Window_Message__terminateMessage = Window_Message.prototype.terminateMessage;
+	Window_Message.prototype.terminateMessage = function() {
+		w_Window_Message__terminateMessage.call( this );
+
+		if ( _default_windowskin_set ) {
+			_default_windowskin_set = false;
+			this.windowskin = _default_windowskin_name;
 		}
 	};
 
