@@ -4,7 +4,7 @@
  * prividing ablity to move faces on right side of screen and mirrord.
  * 
  * @author WickedWolfy
- * @version Version 1.2.2
+ * @version Version 1.3.0
  *
  *
  * @param == Face Frame Border == 
