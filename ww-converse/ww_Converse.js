@@ -79,8 +79,8 @@
  * @parent == Face Frame BG ==
  * @type number
  * @decimals 1
- * @max 1
- * @min 0
+ * @max 1.0
+ * @min 0.0
  * @default 0.5
  *
  *
@@ -143,9 +143,9 @@ Wicked.CONVERSE = Wicked.CONVERSE || {}; // Handle for "Conversation"
 
 	// face frame specific
 	var face_frame_border_color = String( PluginManager.parameters('ww_Converse')['Face Border Color'] ) || 'white';
-	var face_frame_border_thickness = Number( PluginManager.parameters('ww_Converse')['Face Border Thickness'] ) || 2;
+	var face_frame_border_thickness = String( PluginManager.parameters('ww_Converse')['Face Border Thickness'] ) || 2;
 	var face_frame_backdrop_color = String( PluginManager.parameters('ww_Converse')['Face BG Color'] ) || 'black';
-	var face_frame_backdrop_alpha = Number( PluginManager.parameters('ww_Converse')['Face BG Alpha'] ) || 0.5;
+	var face_frame_backdrop_alpha = String( PluginManager.parameters('ww_Converse')['Face BG Alpha'] ) || 0.5;
 
 	// overwriting standards
 	var standard_padding = Number( PluginManager.parameters('ww_Converse')['Window Padding'] ) || 13; // default: 18
@@ -166,8 +166,6 @@ Wicked.CONVERSE = Wicked.CONVERSE || {}; // Handle for "Conversation"
 	var local__Game_Interpreter = Game_Interpreter.prototype.pluginCommand;
 	Game_Interpreter.prototype.pluginCommand = function( command, args ) {
 		local__Game_Interpreter.call(this, command, args);
-
-		console.log( PluginManager.parameters('ww_Converse') );
 
 		if ( 'ww|CONVERSE' !== command || args.length < 1 ) return;
 
