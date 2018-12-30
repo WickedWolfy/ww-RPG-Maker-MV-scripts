@@ -7,7 +7,7 @@
  * @version Version 1.3.0
  *
  * @help
- * Version 1.3.0 by WickedWolfy
+ * Version 1.3.1 by WickedWolfy
  *
  * This plugin adds options for Conversations
  * and allows for placing speaker on the right side
@@ -162,6 +162,8 @@ Wicked.CONVERSE = Wicked.CONVERSE || {}; // Handle for "Conversation"
 	var speaker_position_mirror_once = false;
 	var speaker_position_mirror_cont = false;
 
+	var is_use_default_case = false; // this is a hack to fix the YEP Message Core items not having proper width
+
 	// Plugin Commands
 	var local__Game_Interpreter = Game_Interpreter.prototype.pluginCommand;
 	Game_Interpreter.prototype.pluginCommand = function( command, args ) {
@@ -286,11 +288,33 @@ Wicked.CONVERSE = Wicked.CONVERSE || {}; // Handle for "Conversation"
 		}
 	};
 
-	Window_Message.prototype.windowWidth = function() { return _.overwrite_message_box_width(); };
-	Window_Message.prototype.numVisibleRows = function() { return visible_rows; };
 	Window_Message.prototype.standardBackOpacity = function() { return standard_opacity; };
 	Window_Message.prototype.standardPadding = function() { return standard_padding; };
 
+	var w_Window_Message__convertNameBox = Window_Message.prototype.convertNameBox;
+	Window_Message.prototype.convertNameBox = function(text) {
+
+		// scan text for "extra" items to look out for
+		is_use_default_case = false; // reset
+		var text_without_special_commands = text;
+		text_without_special_commands = text.replace(/\x1bAUTO/gi, '');
+		if ( text_without_special_commands !== text ) is_use_default_case = true;
+
+		console.log( is_use_default_case );
+
+		return w_Window_Message__convertNameBox.call(this, text);
+	};
+
+	var w_Window_Message__windowWidth = Window_Message.prototype.windowWidth;
+	Window_Message.prototype.windowWidth = function() {
+		if ( is_use_default_case ) return w_Window_Message__windowWidth.call(this);
+		return _.overwrite_message_box_width();
+	};
+	var w_Window_Message__numVisibleRows = Window_Message.prototype.numVisibleRows;
+	Window_Message.prototype.numVisibleRows = function() {
+		if ( is_use_default_case ) return w_Window_Message__numVisibleRows.call(this);
+		return visible_rows;
+	};
 
 	// Overwrites for extending for other modules... and cheating =3
 	_.overwrite_message_box_width = function() {
