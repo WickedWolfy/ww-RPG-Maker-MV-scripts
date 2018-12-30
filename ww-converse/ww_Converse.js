@@ -300,8 +300,6 @@ Wicked.CONVERSE = Wicked.CONVERSE || {}; // Handle for "Conversation"
 		text_without_special_commands = text.replace(/\x1bAUTO/gi, '');
 		if ( text_without_special_commands !== text ) is_use_default_case = true;
 
-		console.log( is_use_default_case );
-
 		return w_Window_Message__convertNameBox.call(this, text);
 	};
 
