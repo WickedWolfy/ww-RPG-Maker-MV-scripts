@@ -4,10 +4,10 @@
  * prividing ablity to move faces on right side of screen and mirrord.
  * 
  * @author WickedWolfy
- * @version Version 1.3.0
+ * @version Version 1.3.2
  *
  * @help
- * Version 1.3.1 by WickedWolfy
+ * Version 1.3.2 by WickedWolfy
  *
  * This plugin adds options for Conversations
  * and allows for placing speaker on the right side
