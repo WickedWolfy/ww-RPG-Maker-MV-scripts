@@ -3,7 +3,7 @@
  * @plugindesc Modifies default conversation block,
  * prividing ablity to move faces on right side of screen and mirrord.
  * 
- * @author WickedWolfy | Version 1.3.2
+ * @author WickedWolfy | Version: 1.3.2
  *
  * @help
  *
